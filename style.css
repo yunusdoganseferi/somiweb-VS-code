@@ -1083,7 +1083,8 @@ body.modal-open {
 
 /* ---- FOOTER ---- */
 .footer {
-  background: var(--slate);
+  background: rgba(250, 250, 248, 0.92);
+  border-top: 1px solid var(--border-light);
   padding: 4rem 0 0;
 }
 
@@ -1092,17 +1093,17 @@ body.modal-open {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
   padding-bottom: 3rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .footer-brand .logo-somi {
-  color: var(--white);
+  color: var(--slate);
   font-size: 1.3rem;
 }
 
 .footer-brand p {
   font-size: 0.82rem;
-  color: rgba(255,255,255,0.45);
+  color: var(--slate-light);
   line-height: 1.8;
   margin-top: 0.5rem;
 }
@@ -1116,23 +1117,24 @@ body.modal-open {
 .footer-links a {
   text-decoration: none;
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.55);
+  color: var(--slate-light);
   transition: color 0.2s;
 }
 
 .footer-links a:hover {
-  color: var(--gold-light);
+  color: var(--slate);
 }
 
 .footer-contact a {
   display: block;
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.55);
+  color: var(--slate-light);
   text-decoration: none;
   margin-bottom: 0.5rem;
+  transition: color 0.2s;
 }
 
-.footer-contact a:hover { color: var(--gold-light); }
+.footer-contact a:hover { color: var(--slate); }
 
 .footer-social {
   display: flex;
@@ -1143,11 +1145,13 @@ body.modal-open {
 .footer-bottom {
   text-align: center;
   padding: 1.25rem 2rem;
+  border-top: 1px solid var(--border-light);
 }
 
 .footer-bottom p {
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.25);
+  color: var(--slate-light);
+  opacity: 0.6;
   letter-spacing: 0.05em;
 }
 
