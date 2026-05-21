@@ -298,26 +298,27 @@ body {
 .hero-vibes-hint {
   position: absolute;
   top: calc(var(--nav-h) + 1.2rem);
-  right: 2.8rem;
+  right: 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.2rem;
-  text-decoration: none;
+  pointer-events: none;
+  user-select: none;
 }
 
 .vibes-hint-svg {
-  width: 44px;
-  height: 52px;
-  opacity: 0.65;
+  width: 64px;
+  height: 86px;
+  opacity: 0.62;
 }
 
 .vibes-hint-text {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   color: var(--slate-light);
-  opacity: 0.7;
+  opacity: 0.65;
   white-space: nowrap;
 }
 
