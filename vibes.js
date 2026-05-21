@@ -295,45 +295,15 @@ function initFacts() {
 
 // ---- ENHANCE YOUR VIBE ----
 
+const _meowAudio = new Audio('sounds/meow.mp3');
+_meowAudio.preload = 'auto';
+
 function playMeow() {
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    const osc2 = ctx.createOscillator();
-    const gain2 = ctx.createGain();
-
-    // Main meow tone
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(380, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(760, ctx.currentTime + 0.08);
-    osc.frequency.exponentialRampToValueAtTime(520, ctx.currentTime + 0.22);
-    osc.frequency.exponentialRampToValueAtTime(340, ctx.currentTime + 0.50);
-
-    gain.gain.setValueAtTime(0, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.28, ctx.currentTime + 0.06);
-    gain.gain.linearRampToValueAtTime(0.22, ctx.currentTime + 0.25);
-    gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.55);
-
-    // Harmonic overtone for realism
-    osc2.type = 'triangle';
-    osc2.frequency.setValueAtTime(760, ctx.currentTime);
-    osc2.frequency.exponentialRampToValueAtTime(1520, ctx.currentTime + 0.08);
-    osc2.frequency.exponentialRampToValueAtTime(1040, ctx.currentTime + 0.22);
-    osc2.frequency.exponentialRampToValueAtTime(680, ctx.currentTime + 0.50);
-
-    gain2.gain.setValueAtTime(0, ctx.currentTime);
-    gain2.gain.linearRampToValueAtTime(0.07, ctx.currentTime + 0.06);
-    gain2.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.50);
-
-    osc.connect(gain);   gain.connect(ctx.destination);
-    osc2.connect(gain2); gain2.connect(ctx.destination);
-
-    osc.start(ctx.currentTime);   osc.stop(ctx.currentTime + 0.6);
-    osc2.start(ctx.currentTime);  osc2.stop(ctx.currentTime + 0.6);
+    _meowAudio.currentTime = 0;
+    _meowAudio.play();
   } catch (e) {
-    // AudioContext not supported — silent fallback
+    // audio not available
   }
 }
 
