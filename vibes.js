@@ -295,13 +295,32 @@ function initFacts() {
 
 // ---- ENHANCE YOUR VIBE ----
 
-const _meowAudio = new Audio('sounds/meow.mp3');
-_meowAudio.preload = 'auto';
+const MEOW_FILES = [
+  'sounds/729021__redjamie7__cat-festus-meow-1.mp3',
+  'sounds/729022__redjamie7__cat-festus-meow-2.mp3',
+  'sounds/729023__redjamie7__cat-festus-meow-3.mp3',
+  'sounds/729024__redjamie7__cat-festus-meow-4.mp3',
+  'sounds/729025__redjamie7__cat-festus-meow-5.mp3',
+  'sounds/729026__redjamie7__cat-festus-meow-6.mp3',
+  'sounds/729027__redjamie7__cat-festus-meow-7.mp3',
+  'sounds/729031__redjamie7__cat-smokey-meow-1.mp3',
+  'sounds/729032__redjamie7__cat-smokey-meow-2.mp3',
+];
+
+const _meowPool = MEOW_FILES.map(src => {
+  const a = new Audio(src);
+  a.preload = 'auto';
+  return a;
+});
+
+let _meowIndex = 0;
 
 function playMeow() {
   try {
-    _meowAudio.currentTime = 0;
-    _meowAudio.play();
+    const audio = _meowPool[_meowIndex];
+    audio.currentTime = 0;
+    audio.play();
+    _meowIndex = (_meowIndex + 1) % _meowPool.length;
   } catch (e) {
     // audio not available
   }
