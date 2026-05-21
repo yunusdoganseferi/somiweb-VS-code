@@ -326,31 +326,42 @@ function playMeow() {
   }
 }
 
-const CAT_EMOJIS = ['🐱', '🐈', '😸', '😻', '🐾', '😹', '🙀'];
+const CAT_IMAGES = [
+  'cats/cat1.jpg', 'cats/cat2.jpg', 'cats/cat3.jpg',
+  'cats/cat4.jpg', 'cats/cat5.jpg', 'cats/cat6.jpg', 'cats/cat7.jpg',
+];
+let _catIndex = 0;
 
 function launchCats(originEl) {
   const rect = originEl.getBoundingClientRect();
   const ox = rect.left + rect.width / 2;
   const oy = rect.top + rect.height / 2;
 
-  const el = document.createElement('div');
-  el.className = 'flying-cat';
-  el.textContent = CAT_EMOJIS[Math.floor(Math.random() * CAT_EMOJIS.length)];
-  el.style.left = ox + 'px';
-  el.style.top  = oy + 'px';
+  const img = document.createElement('img');
+  img.src = CAT_IMAGES[_catIndex];
+  _catIndex = (_catIndex + 1) % CAT_IMAGES.length;
+
+  img.alt = 'cat';
+  img.style.cssText = `
+    position: fixed; z-index: 9999; pointer-events: none;
+    width: 110px; height: 110px; object-fit: cover;
+    border-radius: 50%; border: 3px solid rgba(255,255,255,0.9);
+    box-shadow: 0 6px 24px rgba(59,21,21,0.25);
+    left: ${ox}px; top: ${oy}px;
+  `;
 
   const angle    = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI;
   const distance = 180 + Math.random() * 120;
-  const tx  = Math.cos(angle) * distance;
-  const ty  = Math.sin(angle) * distance;
-  const rot = (Math.random() * 360 - 180) + 'deg';
+  img.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+  img.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+  img.style.setProperty('--rot', (Math.random() * 360 - 180) + 'deg');
 
-  el.style.setProperty('--tx',  tx  + 'px');
-  el.style.setProperty('--ty',  ty  + 'px');
-  el.style.setProperty('--rot', rot);
-
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 1600);
+  img.onload = () => {
+    img.classList.add('flying-cat');
+    document.body.appendChild(img);
+    setTimeout(() => img.remove(), 1600);
+  };
+  img.onerror = () => img.remove();
 }
 
 function initEnhanceVibe() {
