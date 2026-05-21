@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vibes — SoMi Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="shortcut icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="vibes.css">
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="SoMi Lab" class="nav-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <span class="nav-logo-text" style="display:none"><span class="logo-somi">SoMi</span><span class="logo-lab">LAB</span></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="vibes.html" class="active">Vibes</a></li>
+      <li><a href="apply.html" class="nav-apply">Apply Now</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header vibes-header">
+    <div class="container">
+      <div class="section-label">The Human Side of Science</div>
+      <h1 class="page-title">Vibes</h1>
+      <p class="page-subtitle">What we're feeling, playing, and thinking about this week</p>
+    </div>
+  </div>
+
+  <!-- MOOD TRACKER -->
+  <section class="section vibes-mood-section">
+    <div class="container">
+      <div class="vibes-section-header">
+        <div class="section-label">Daily Ritual</div>
+        <h2 class="section-title">Today's Vibe</h2>
+        <p class="section-lead">How are you really doing? Log your mood — no one's grading it.</p>
+      </div>
+
+      <div class="mood-card" id="moodCard">
+
+        <!-- RATING UI (shown when not yet logged today) -->
+        <div class="mood-input-panel" id="moodInputPanel">
+          <p class="mood-prompt">Pick the emoji that matches your energy right now:</p>
+          <div class="mood-emoji-row">
+            <button class="mood-emoji-btn" data-score="1" aria-label="Drained">😩</button>
+            <button class="mood-emoji-btn" data-score="3" aria-label="Meh">😕</button>
+            <button class="mood-emoji-btn" data-score="5" aria-label="Okay">😐</button>
+            <button class="mood-emoji-btn" data-score="7" aria-label="Good">🙂</button>
+            <button class="mood-emoji-btn" data-score="9" aria-label="Amazing">🤩</button>
+          </div>
+          <div class="mood-slider-wrap">
+            <span class="mood-slider-label">Drained</span>
+            <input type="range" min="1" max="10" value="5" class="mood-slider" id="moodSlider">
+            <span class="mood-slider-label">Energised</span>
+          </div>
+          <div class="mood-score-display">
+            <span id="moodScoreNum">5</span>
+            <span class="mood-score-unit">/ 10</span>
+          </div>
+          <button class="mood-submit-btn" id="moodSubmit">Log today's vibe &rarr;</button>
+        </div>
+
+        <!-- ALREADY LOGGED (shown after logging or if already logged today) -->
+        <div class="mood-done-panel" id="moodDonePanel" style="display:none">
+          <div class="mood-done-emoji" id="moodDoneEmoji">🙂</div>
+          <p class="mood-done-score">You logged a <strong id="moodDoneScore">5</strong>/10 today.</p>
+          <p class="mood-done-note">Come back tomorrow to log again.</p>
+          <button class="mood-reset-btn" id="moodReset">Change my answer</button>
+        </div>
+
+      </div>
+
+      <!-- MOOD HISTORY -->
+      <div class="mood-history" id="moodHistory">
+        <h3 class="mood-history-title">Your last 14 days</h3>
+        <div class="mood-history-dots" id="moodHistoryDots"></div>
+        <div class="mood-history-legend">
+          <span class="legend-dot" style="background:var(--gold-pale)"></span> No entry
+          &nbsp;&nbsp;
+          <span class="legend-dot" style="background:var(--gold-light)"></span> Low
+          &nbsp;&nbsp;
+          <span class="legend-dot" style="background:var(--gold)"></span> High
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="vibes-divider"></div>
+
+  <!-- LAB MOMENTS -->
+  <section class="section vibes-gallery-section">
+    <div class="container">
+      <div class="vibes-section-header">
+        <div class="section-label">Lab Life</div>
+        <h2 class="section-title">Moments</h2>
+        <p class="section-lead">Snapshots from the lab — coffee runs, late-night sessions, and everything in between.</p>
+      </div>
+
+      <div class="moments-grid" id="momentsGrid">
+        <!-- Placeholder slots — swap src with real photos -->
+        <div class="moment-slot moment-slot--placeholder">
+          <div class="moment-plus">+</div>
+          <p>Add a photo</p>
+        </div>
+        <div class="moment-slot moment-slot--placeholder">
+          <div class="moment-plus">+</div>
+          <p>Add a photo</p>
+        </div>
+        <div class="moment-slot moment-slot--placeholder">
+          <div class="moment-plus">+</div>
+          <p>Add a photo</p>
+        </div>
+        <div class="moment-slot moment-slot--placeholder">
+          <div class="moment-plus">+</div>
+          <p>Add a photo</p>
+        </div>
+        <div class="moment-slot moment-slot--placeholder">
+          <div class="moment-plus">+</div>
+          <p>Add a photo</p>
+        </div>
+        <div class="moment-slot moment-slot--placeholder">
+          <div class="moment-plus">+</div>
+          <p>Add a photo</p>
+        </div>
+      </div>
+
+      <p class="moments-hint">
+        To add real photos, replace the placeholder <code>&lt;div&gt;</code> blocks in <code>vibes.html</code> with <code>&lt;img src="images/your-photo.jpg"&gt;</code> inside a <code>.moment-slot</code>.
+      </p>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="vibes-divider"></div>
+
+  <!-- PLAYLIST -->
+  <section class="section vibes-playlist-section">
+    <div class="container vibes-playlist-inner">
+      <div class="vibes-section-header">
+        <div class="section-label">Currently Spinning</div>
+        <h2 class="section-title">Week's Playlist</h2>
+        <p class="section-lead">The soundtrack of our research sessions — updated (roughly) weekly.</p>
+      </div>
+
+      <div class="playlist-embed-wrap">
+        <!-- Replace the src URL below with your own Spotify playlist embed link.
+             In Spotify: right-click playlist → Share → Embed playlist → Copy HTML.
+             Swap only the src attribute. -->
+        <iframe
+          id="spotifyEmbed"
+          style="border-radius:6px"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1DX8NTLI2TtZa6?utm_source=generator"
+          width="100%"
+          height="380"
+          frameBorder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+        <p class="playlist-hint">
+          This is a placeholder playlist. To add your own, open Spotify → right-click your playlist → <em>Share → Embed playlist</em>, then replace the <code>src</code> URL in <code>vibes.html</code>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="vibes-divider"></div>
+
+  <!-- SCIENCE FUN -->
+  <section class="section vibes-fact-section">
+    <div class="container">
+      <div class="vibes-section-header">
+        <div class="section-label">Did You Know?</div>
+        <h2 class="section-title">Today's Mind Snack</h2>
+        <p class="section-lead">A daily rotating fact from the weird and wonderful world of cognitive science.</p>
+      </div>
+
+      <div class="fact-card" id="factCard">
+        <div class="fact-number" id="factNumber">01</div>
+        <blockquote class="fact-text" id="factText">Loading…</blockquote>
+        <cite class="fact-source" id="factSource"></cite>
+        <button class="fact-next-btn" id="factNext">Next fact &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="SoMi Lab" class="footer-logo-img" onerror="this.style.display='none'">
+        <p>Social Minds Laboratory<br>Koç University, Istanbul</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="people.html">People</a>
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="vibes.html">Vibes</a>
+        <a href="apply.html">Apply</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:somilab.ku@gmail.com">somilab.ku@gmail.com</a>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/somilab.ku/" target="_blank">Instagram</a>
+          <a href="https://x.com/labsomi" target="_blank">X / Twitter</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Social Minds Laboratory, Koç University · somilab.org</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="vibes.js"></script>
+</body>
+</html>
