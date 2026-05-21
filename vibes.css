@@ -64,10 +64,10 @@
   position: fixed;
   z-index: 9999;
   pointer-events: none;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 6px 24px rgba(59, 21, 21, 0.25);
+  font-size: 3rem;
+  line-height: 1;
+  user-select: none;
+  filter: drop-shadow(0 4px 12px rgba(59, 21, 21, 0.20));
   animation: catFly 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
