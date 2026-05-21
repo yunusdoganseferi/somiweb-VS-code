@@ -1,5 +1,18 @@
 // SOMI Lab — main.js
 
+// Align "skip the boring stuff" hint to the Vibes nav link
+function positionVibesHint() {
+  const hint = document.querySelector('.hero-vibes-hint');
+  const vibesLink = document.querySelector('.nav-links a[href="vibes.html"]');
+  if (!hint || !vibesLink) return;
+  const linkRect = vibesLink.getBoundingClientRect();
+  const linkCenterX = linkRect.left + linkRect.width / 2;
+  const right = window.innerWidth - linkCenterX - hint.offsetWidth / 2;
+  hint.style.right = Math.max(0, right) + 'px';
+}
+document.addEventListener('DOMContentLoaded', positionVibesHint);
+window.addEventListener('resize', positionVibesHint);
+
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
