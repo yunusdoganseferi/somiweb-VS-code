@@ -13,6 +13,88 @@
   margin-bottom: 3rem;
 }
 
+.mood-title-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+.mood-title-row .section-title {
+  margin-bottom: 0;
+}
+
+/* ---- ENHANCE VIBE BUTTON ---- */
+.enhance-vibe-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--glass-card);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shine), 0 4px 16px rgba(166, 92, 92, 0.10);
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.1rem;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  white-space: nowrap;
+  margin-bottom: 1.5rem;
+}
+
+.enhance-vibe-btn:hover {
+  background: rgba(248, 221, 220, 0.88);
+  box-shadow: var(--glass-shine), 0 6px 24px rgba(166, 92, 92, 0.18);
+  transform: translateY(-2px);
+}
+
+.enhance-vibe-btn:active {
+  transform: scale(0.96);
+}
+
+.enhance-vibe-btn.popping {
+  animation: btnPop 0.25s cubic-bezier(0.2, 0.8, 0.2, 1.6);
+}
+
+@keyframes btnPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.14); }
+  100% { transform: scale(1); }
+}
+
+/* ---- FLYING CATS ---- */
+.flying-cat {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 6px 24px rgba(59, 21, 21, 0.25);
+  animation: catFly 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes catFly {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
 /* ---- DIVIDER ---- */
 .vibes-divider {
   height: 1px;
