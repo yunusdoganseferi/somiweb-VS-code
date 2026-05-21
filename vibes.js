@@ -342,40 +342,32 @@ function launchCats(originEl) {
   const ox = rect.left + rect.width / 2;
   const oy = rect.top + rect.height / 2;
 
-  const count = 7;
-  const sizes = [80, 96, 80, 110, 88, 80, 96];
+  const img = document.createElement('img');
+  const size = 110;
 
-  for (let i = 0; i < count; i++) {
-    const img = document.createElement('img');
-    const size = sizes[i];
+  // placekitten.com returns a different cat per unique dimension pair
+  const w = 150 + Math.floor(Math.random() * 120);
+  const h = 150 + Math.floor(Math.random() * 120);
+  img.src = `https://placekitten.com/${w}/${h}`;
+  img.alt = 'cat';
+  img.className = 'flying-cat';
+  img.style.width  = size + 'px';
+  img.style.height = size + 'px';
+  img.style.left   = ox + 'px';
+  img.style.top    = oy + 'px';
 
-    // cataas.com serves a random cat image on every unique URL
-    img.src = `https://cataas.com/cat?t=${Date.now()}${i}`;
-    img.alt = 'cat';
-    img.className = 'flying-cat';
-    img.style.width  = size + 'px';
-    img.style.height = size + 'px';
-    img.style.left   = ox + 'px';
-    img.style.top    = oy + 'px';
+  const angle    = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI; // mostly upward
+  const distance = 180 + Math.random() * 120;
+  const tx  = Math.cos(angle) * distance;
+  const ty  = Math.sin(angle) * distance;
+  const rot = (Math.random() * 360 - 180) + 'deg';
 
-    // Spread evenly around a circle, nudged randomly
-    const baseAngle  = (Math.PI * 2 / count) * i - Math.PI / 2;
-    const jitter     = (Math.random() - 0.5) * 0.7;
-    const angle      = baseAngle + jitter;
-    const distance   = 160 + Math.random() * 140;
+  img.style.setProperty('--tx',  tx  + 'px');
+  img.style.setProperty('--ty',  ty  + 'px');
+  img.style.setProperty('--rot', rot);
 
-    const tx  = Math.cos(angle) * distance;
-    const ty  = Math.sin(angle) * distance - 40; // slight upward bias
-    const rot = (Math.random() * 600 - 300) + 'deg';
-
-    img.style.setProperty('--tx',  tx  + 'px');
-    img.style.setProperty('--ty',  ty  + 'px');
-    img.style.setProperty('--rot', rot);
-    img.style.animationDelay = (i * 35) + 'ms';
-
-    document.body.appendChild(img);
-    setTimeout(() => img.remove(), 1700 + i * 35);
-  }
+  document.body.appendChild(img);
+  setTimeout(() => img.remove(), 1600);
 }
 
 function initEnhanceVibe() {
@@ -383,9 +375,6 @@ function initEnhanceVibe() {
   if (!btn) return;
 
   btn.addEventListener('click', () => {
-    btn.classList.remove('popping');
-    void btn.offsetWidth; // reflow to restart animation
-    btn.classList.add('popping');
     playMeow();
     launchCats(btn);
   });
