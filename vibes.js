@@ -297,28 +297,34 @@ function initFacts() {
 
 const MEOW_FILES = [
   'sounds/18271__zippi1__sound-meow2.wav',
-  'sounds/199631__seidhepriest__cat-meow.flac',
+  'sounds/199631__seidhepriest__cat-meow.wav',
   'sounds/432759__xpoki__meow.wav',
   'sounds/698633__suicdxsaturday__meow51252153-2.ogg',
 ];
 
-const _meowPool = MEOW_FILES.map(src => {
-  const a = new Audio(src);
-  a.preload = 'auto';
-  return a;
-});
-
+const _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const _meowBuffers = new Array(MEOW_FILES.length).fill(null);
 let _meowIndex = 0;
 
+MEOW_FILES.forEach((src, i) => {
+  fetch(src)
+    .then(r => r.arrayBuffer())
+    .then(ab => _audioCtx.decodeAudioData(ab))
+    .then(buf => { _meowBuffers[i] = buf; })
+    .catch(() => {});
+});
+
 function playMeow() {
+  const buf = _meowBuffers[_meowIndex];
+  _meowIndex = (_meowIndex + 1) % MEOW_FILES.length;
+  if (!buf) return;
   try {
-    const audio = _meowPool[_meowIndex];
-    audio.currentTime = 0;
-    audio.play();
-    _meowIndex = (_meowIndex + 1) % _meowPool.length;
-  } catch (e) {
-    // audio not available
-  }
+    if (_audioCtx.state === 'suspended') _audioCtx.resume();
+    const src = _audioCtx.createBufferSource();
+    src.buffer = buf;
+    src.connect(_audioCtx.destination);
+    src.start(0);
+  } catch (e) {}
 }
 
 const CAT_IMAGES = [
@@ -340,7 +346,7 @@ function launchCats(originEl) {
   img.style.cssText = `
     position: fixed; z-index: 9999; pointer-events: none;
     width: 110px; height: 110px; object-fit: cover;
-    border-radius: 50%; border: 3px solid rgba(255,255,255,0.9);
+    border-radius: 50%;
     box-shadow: 0 6px 24px rgba(59,21,21,0.25);
     left: ${ox}px; top: ${oy}px;
   `;
