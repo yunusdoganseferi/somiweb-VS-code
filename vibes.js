@@ -296,15 +296,10 @@ function initFacts() {
 // ---- ENHANCE YOUR VIBE ----
 
 const MEOW_FILES = [
-  'sounds/729021__redjamie7__cat-festus-meow-1.mp3',
-  'sounds/729022__redjamie7__cat-festus-meow-2.mp3',
-  'sounds/729023__redjamie7__cat-festus-meow-3.mp3',
-  'sounds/729024__redjamie7__cat-festus-meow-4.mp3',
-  'sounds/729025__redjamie7__cat-festus-meow-5.mp3',
-  'sounds/729026__redjamie7__cat-festus-meow-6.mp3',
-  'sounds/729027__redjamie7__cat-festus-meow-7.mp3',
-  'sounds/729031__redjamie7__cat-smokey-meow-1.mp3',
-  'sounds/729032__redjamie7__cat-smokey-meow-2.mp3',
+  'sounds/18271__zippi1__sound-meow2.wav',
+  'sounds/199631__seidhepriest__cat-meow.flac',
+  'sounds/432759__xpoki__meow.wav',
+  'sounds/698633__suicdxsaturday__meow51252153-2.ogg',
 ];
 
 const _meowPool = MEOW_FILES.map(src => {
